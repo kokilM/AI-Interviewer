@@ -1,0 +1,25 @@
+<div class="thank-you-container">
+  <div class="thank-you-content">
+    <div class="success-animation">
+      <span>✓</span>
+    </div>
+    
+    <h1>Thank You!</h1>
+    <p class="completion-message">Your interview has been completed successfully.</p>
+
+    <div class="ai-message" *ngIf="lastAiMessage">
+      <h3>Final Message from AI Interviewer</h3>
+      <p>{{ lastAiMessage }}</p>
+    </div>
+
+    <div class="feedback-message">
+      {{ feedback }}
+    </div>
+
+    <div class="action-buttons">
+      <button class="home-button" (click)="navigateToHome()">
+        Return to Home
+      </button>
+    </div>
+  </div>
+</div> 

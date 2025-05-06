@@ -1,0 +1,136 @@
+<div class="interview-layout">
+  <div class="sidebar">
+    <div class="sidebar-header">
+      <h2>Technical Interview</h2>
+      <div class="progress-info">
+        <div class="selected-tech">
+          <p>{{ selectedTechnology | titlecase }} Interview</p>
+        </div>
+        <div class="progress-bar">
+          <div class="progress" [style.width.%]="(history.length * 100) / totalQuestions"></div>
+        </div>
+        <p>Question {{ history.length + 1 }}</p>
+      </div>
+    </div>
+
+    <div class="question-history">
+      <h3>Question History</h3>
+      <div class="history-list">
+        <div class="history-item" *ngFor="let item of history.slice().reverse(); let i = index" [class.active]="i === 0">
+          <div class="question-number">Question {{ i + 1 }}</div>
+          <div class="history-content">
+            <div class="history-ai">
+              <strong>AI:</strong> {{ item.question | slice:0:50 }}{{ item.question.length > 50 ? '...' : '' }}
+            </div>
+            <div class="history-user">
+              <strong>You:</strong> {{ item.response | slice:0:50 }}{{ item.response.length > 50 ? '...' : '' }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="main-content">
+    <div class="interview-content">
+      <div class="ai-question-section">
+        <div class="section-header">
+          <h2>AI Interviewer</h2>
+        </div>
+        <div class="question-box" [class.loading]="isLoading">
+          <div class="question-content">
+            <div *ngIf="aiResponse">
+              {{ aiResponse }}
+            </div>
+            <div *ngIf="!aiResponse && !isLoading">
+              Welcome to your {{ selectedTechnology | titlecase }} technical interview. I'll be your interviewer today.
+            </div>
+          </div>
+          <div class="typing-indicator" *ngIf="isLoading">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <div *ngIf="aiResponse" class="chat-question current">
+            <button (click)="playAiSpeech(aiResponse)">🔊</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="candidate-response-section">
+        <div class="section-header">
+          <h2>Your Response</h2>
+        </div>
+        <div class="response-box">
+          <textarea
+            [(ngModel)]="userQuestion"
+            placeholder="Type your response here..."
+            [disabled]="isLoading"
+            rows="6"
+            class="response-input">
+          </textarea>
+
+          <div *ngIf="isRecording" class="transcription-box">
+            <div class="final-transcript">{{ userQuestion }}</div>
+            <div class="interim-transcript">{{ interimTranscript }}</div>
+          </div>
+
+          <div class="error-message" *ngIf="error">
+            {{ error }}
+          </div>
+          <div class="button-container">
+            <button 
+              (click)="askQuestion()" 
+              [disabled]="isLoading || !userQuestion.trim()" 
+              class="primary-button">
+              {{ isLoading ? 'Sending...' : 'Submit Response' }}
+            </button>
+
+            <button 
+              (click)="toggleVoiceInput()" 
+              [disabled]="isLoading"
+              class="voice-button"
+              [class.recording]="isRecording">
+              {{ isRecording ? '⏹️ Stop Voice' : '🎙️ Start Voice' }}
+            </button>
+          </div>
+
+          <div *ngIf="isLoading" class="loading-spinner">
+            <p>Thinking...</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="interview-controls">
+        <button 
+          (click)="submitInterview()" 
+          [disabled]="isLoading || history.length === 0"
+          class="submit-test-button">
+          Complete Interview
+        </button>
+
+        <button 
+          (click)="stopInterview()" 
+          class="stop-test-button">
+          Exit Interview
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="code-editor-panel">
+    <div class="panel-header">
+      <h3>Code Editor</h3>
+    </div>
+    <app-code-editor [language]="selectedTechnology"></app-code-editor>
+    <div class="terminal-section">
+      <div class="terminal-header">
+        <h3>Terminal</h3>
+        <button (click)="clearTerminal()" class="clear-button">Clear</button>
+      </div>
+      <div class="terminal">
+        <pre>{{ terminalOutput }}</pre>
+      </div>
+    </div>
+  </div> -->
+</div>

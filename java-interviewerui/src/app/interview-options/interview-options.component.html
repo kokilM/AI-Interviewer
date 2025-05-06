@@ -1,0 +1,14 @@
+<div class="options-container">
+  <div class="options-header">
+    <h1>Choose Your Interview Track</h1>
+    <p>Select the technology you'd like to be interviewed in</p>
+  </div>
+
+  <div class="options-grid">
+    <div class="option-card" *ngFor="let option of interviewOptions" (click)="selectOption(option)">
+      <div class="option-icon">{{ option.icon }}</div>
+      <h2>{{ option.name }}</h2>
+      <p>{{ option.description }}</p>
+    </div>
+  </div>
+</div> 
