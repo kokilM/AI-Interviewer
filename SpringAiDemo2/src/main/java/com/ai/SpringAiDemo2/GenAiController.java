@@ -58,7 +58,7 @@ public class GenAiController {
 "4. Ask exactly ONE follow-up question about their project. Do not combine or ask multiple questions.\n" +
 "5. Wait for their response. Do not continue until they respond.\n" +
 "\n" +
-"6. Begin the technical interview in %s. Ask exactly 3 intermediate-level questions in %s.\n" +
+"6. Begin the technical interview in %s. Ask exactly 5 intermediate-level questions in %s.\n" +
 "7. Ask only ONE question at a time.\n" +
 "8. Wait for the candidate's response before asking the next one.\n" +
 "9. Never ask more than one question at a time. Ask only one question strictly.\n" +
@@ -68,7 +68,7 @@ public class GenAiController {
 "12. After all 3 answers are received, ask exactly this and nothing else: 'Would you like to see your interview score? (yes/no)'\n" +
 "\n" +
 "13. If the candidate answers 'yes', show their score like this:\n" +
-"'Your interview score is: [calculated score out of 3]. Thank you for completing the interview.'\n" +
+"'Your interview score is: [calculated score out of 5]. Thank you for completing the interview.'\n" +
 "\n" +
 "14. If the candidate answers 'no', say: 'Thank you for completing the interview.'\n" +
 "\n" +
