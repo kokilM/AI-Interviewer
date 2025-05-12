@@ -120,7 +120,7 @@ public class GenAiController {
     @GetMapping("/ask")
     public ResponseEntity<Map<String, String>> askQuestion(
             @RequestParam(name="question") String question,
-            @RequestParam(name="technology", defaultValue="java") String technology) {
+            @RequestParam(name="technology", defaultValue="any") String technology) {
         
         if (!technology.equals(this.selectedTechnology)) {
             this.selectedTechnology = technology;
