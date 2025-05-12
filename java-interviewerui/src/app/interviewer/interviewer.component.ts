@@ -53,7 +53,6 @@ export class InterviewerComponent implements OnInit, OnDestroy {
     this.selectedTechnology = localStorage.getItem('selectedTechnology') || 'java';
     this.startInterview();
 
-    // Subscribe to real-time AI responses
     this.aiService.getResponseStream()
       .pipe(takeUntil(this.destroy$))
       .subscribe(response => {

@@ -9,7 +9,7 @@ import { InterviewOptionsComponent } from './interview-options/interview-options
 
 export const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
-  {path:'register',component:RegisterComponent},
+  { path:'register',component:RegisterComponent},
   { path: 'login', component: LoginComponent },
   { path: 'options', component: InterviewOptionsComponent },
   { path: 'instructions', component: InstructionsComponent },
